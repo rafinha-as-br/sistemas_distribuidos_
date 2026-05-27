@@ -1,48 +1,86 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Central de Atendimento de Chamados Técnicos — Sistema acadêmico de Sistemas Distribuídos">
+  <meta name="description"
+    content="Central de Atendimento de Chamados Técnicos — Sistema acadêmico de Sistemas Distribuídos">
   <title>Central de Chamados Técnicos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-  <header>
-    <h1>Central de Chamados Técnicos</h1>
+  <header class="site-header">
+    <div class="header-content">
+      <div>
+        <h1>Central de Chamados Técnicos</h1>
+        <p class="header-subtitle">Sistema Distribuído — Gerenciamento de Suporte</p>
+      </div>
+    </div>
   </header>
 
-  <main>
+  <main class="main-container">
 
-    <!-- Formulário de abertura de chamado -->
-    <section id="form-section">
-      <h2>Abrir Chamado</h2>
-      <form id="ticket-form">
+    <section id="form-section" class="card">
+      <h2 class="section-title">
+        Abrir Novo Chamado
+      </h2>
+
+      <form id="ticket-form" novalidate>
         <div class="form-group">
           <label for="clientName">Nome do Cliente</label>
-          <input type="text" id="clientName" name="clientName" placeholder="Digite seu nome" required>
+          <input type="text" id="clientName" name="clientName" placeholder="Ex: João Silva" autocomplete="name"
+            required>
         </div>
+
         <div class="form-group">
           <label for="problem">Descrição do Problema</label>
-          <textarea id="problem" name="problem" placeholder="Descreva o problema" rows="4" required></textarea>
+          <textarea id="problem" name="problem" placeholder="Descreva o problema com o máximo de detalhes..." rows="4"
+            required></textarea>
         </div>
-        <button type="submit" id="submit-btn">Enviar Chamado</button>
+
+        <button type="submit" id="submit-btn">
+          <span id="submit-btn-text">Enviar Chamado</span>
+        </button>
       </form>
-      <p id="form-message"></p>
+
+      <p id="form-message" class="form-message" role="alert" aria-live="polite"></p>
     </section>
 
-    <!-- Área de listagem de chamados (será expandida nos próximos encontros) -->
-    <section id="tickets-section">
-      <h2>Chamados</h2>
-      <div id="tickets-list">
-        <p class="empty-message">Nenhum chamado registrado ainda.</p>
+    <section id="tickets-section" class="card">
+      <div class="section-header">
+        <h2 class="section-title">
+          Chamados Registrados
+        </h2>
+        <!-- Botão para recarregar a lista manualmente -->
+        <button id="refresh-btn" class="btn-secondary" title="Atualizar lista">
+          ↺ Atualizar
+        </button>
       </div>
+
+      <div id="tickets-container" class="state-box" hidden>
+        <div id="tickets-list" role="list" aria-label="Lista de chamados técnicos"></div>
+      </div>
+
+      <p id="empty-state" class="empty-message" hidden>
+        Nenhum chamado registrado ainda.
+      </p>
+
     </section>
 
   </main>
 
-  <!-- NOTA: No 3º Encontro, será adicionado o script do Socket.IO aqui -->
+  <footer class="site-footer">
+    <p>Sistemas Distribuídos — Projeto Acadêmico &bull; API: <code>localhost:3000</code></p>
+  </footer>
+
   <script src="app.js"></script>
+
 </body>
+
 </html>

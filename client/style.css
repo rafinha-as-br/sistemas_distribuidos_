@@ -4,76 +4,297 @@
    Foco em layout e espaçamento, sem temas elaborados.
    ============================================ */
 
+/* ------------------- Reset & Base ------------------- */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+html {
+  /* Use a comfortable root font‑size for scaling */
+  font-size: 16px;
+  /* Enable smooth scrolling for anchor navigation */
+  scroll-behavior: smooth;
+}
+
 body {
-  font-family: sans-serif;
-  padding: 20px;
-  max-width: 700px;
+  font-family: 'Inter', system-ui, sans-serif;
+  background: linear-gradient(135deg, #fafafa, #f0f2f5);
+  color: #222;
+  line-height: 1.6;
+  padding: clamp(1rem, 2vw, 2rem);
+  max-width: 960px;
   margin: 0 auto;
 }
 
-header {
-  margin-bottom: 30px;
+/* ------------------- Dark‑mode Support ------------------- */
+@media (prefers-color-scheme: dark) {
+  body {
+    background: linear-gradient(135deg, #1e1e1e, #2a2a2a);
+    color: #e0e0e0;
+  }
 }
 
-h1 {
-  font-size: 1.6rem;
-  margin-bottom: 5px;
+/* ------------------- Layout Containers ------------------- */
+header.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem 0;
+  margin-bottom: 2rem;
+  background: rgba(255,255,255,0.8);
+  backdrop-filter: blur(8px);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 
-h2 {
-  font-size: 1.2rem;
-  margin-bottom: 15px;
+@media (prefers-color-scheme: dark) {
+  header.site-header { background: rgba(30,30,30,0.8); }
 }
 
-section {
-  margin-bottom: 30px;
+header .header-content {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
 }
 
+.header-icon {
+  font-size: 2rem;
+}
+
+header h1 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.header-subtitle {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+@media (prefers-color-scheme: dark) {
+  .header-subtitle { color: #aaa; }
+}
+
+/* ------------------- Card Component ------------------- */
+.card {
+  background: rgba(255,255,255,0.9);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+}
+
+@media (prefers-color-scheme: dark) {
+  .card { background: rgba(30,30,30,0.9); }
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.section-icon { font-size: 1.2rem; }
+
+/* ------------------- Form Styling ------------------- */
 .form-group {
-  margin-bottom: 15px;
+  margin-bottom: 1rem;
 }
 
 label {
   display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
+  margin-bottom: 0.4rem;
+  font-weight: 500;
+  color: #333;
+}
+
+@media (prefers-color-scheme: dark) {
+  label { color: #ddd; }
 }
 
 input[type="text"],
 textarea {
   width: 100%;
-  padding: 8px;
+  padding: 0.75rem 1rem;
   font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  border: 1px solid #cbd5e0;
+  border-radius: 8px;
+  background: #fff;
+  transition: border-color 0.2s ease;
 }
 
-button[type="submit"] {
-  padding: 10px 20px;
+@media (prefers-color-scheme: dark) {
+  input[type="text"], textarea { background: #2b2b2b; border-color: #555; color: #eee; }
+}
+
+input[type="text"]:focus,
+textarea:focus {
+  outline: none;
+  border-color: #3b82f6;
+}
+
+button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.75rem 1.5rem;
   font-size: 1rem;
-  cursor: pointer;
+  font-weight: 600;
   border: none;
-  border-radius: 4px;
-  background-color: #333;
+  border-radius: 8px;
+  cursor: pointer;
+  background: #3b82f6;
   color: #fff;
+  transition: background 0.2s ease, transform 0.1s ease;
 }
 
-#form-message {
-  margin-top: 10px;
+button:hover { background: #2563eb; }
+button:active { transform: scale(0.98); }
+
+#submit-btn {
+  width: 100%;
+}
+
+/* Secondary button (used for refresh) */
+.btn-secondary {
+  background: #e5e7eb;
+  color: #111;
+}
+
+@media (prefers-color-scheme: dark) {
+  .btn-secondary { background: #444; color: #fff; }
+}
+
+/* ------------------- Form Message ------------------- */
+.form-message {
+  margin-top: 0.75rem;
   font-size: 0.9rem;
+  min-height: 1.2rem;
 }
 
+.form-message.success { color: #16a34a; }
+.form-message.error { color: #dc2626; }
+
+/* ------------------- Ticket List ------------------- */
 #tickets-list {
-  padding: 10px 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
 }
 
-.empty-message {
-  color: #888;
-  font-style: italic;
+@media (min-width: 600px) {
+  #tickets-list { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
 }
+
+.ticket-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  transition: transform 0.1s ease;
+}
+
+.ticket-card:hover { transform: translateY(-2px); }
+
+@media (prefers-color-scheme: dark) {
+  .ticket-card { background: #2a2a2a; }
+}
+
+.ticket-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.5rem;
+}
+
+.ticket-id {
+  font-weight: 600;
+  color: #3b82f6;
+}
+
+.ticket-status {
+  font-size: 0.85rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  background: #e5e7eb;
+  color: #111;
+}
+
+.ticket-status.pending { background: #fde68a; color: #92400e; }
+.ticket-status.completed { background: #a7f3d0; color: #065f46; }
+
+.ticket-body {
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+  color: #444;
+}
+
+@media (prefers-color-scheme: dark) {
+  .ticket-body { color: #ccc; }
+}
+
+/* ------------------- Loading & Error States ------------------- */
+.state-box {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.8rem;
+  padding: 1rem;
+  border-radius: 8px;
+  background: #f3f4f6;
+  margin-bottom: 1rem;
+}
+
+@media (prefers-color-scheme: dark) { .state-box { background: #333; } }
+
+.spinner {
+  width: 24px;
+  height: 24px;
+  border: 3px solid #e5e7eb;
+  border-top-color: #3b82f6;
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.error-state { background: #fee2e2; color: #b91c1c; }
+
+.empty-message { font-style: italic; color: #666; text-align: center; }
+
+/* ------------------- Footer ------------------- */
+.site-footer {
+  text-align: center;
+  font-size: 0.85rem;
+  color: #777;
+  padding: 1rem 0;
+}
+
+@media (prefers-color-scheme: dark) { .site-footer { color: #bbb; } }
+
+/* ------------------- Utility Classes ------------------- */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
