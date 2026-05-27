@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Central de Atendimento de Chamados Técnicos — Sistema acadêmico de Sistemas Distribuídos">
+  <title>Central de Chamados Técnicos</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>Central de Chamados Técnicos</h1>
+  </header>
+
+  <main>
+
+    <!-- Formulário de abertura de chamado -->
+    <section id="form-section">
+      <h2>Abrir Chamado</h2>
+      <form id="ticket-form">
+        <div class="form-group">
+          <label for="clientName">Nome do Cliente</label>
+          <input type="text" id="clientName" name="clientName" placeholder="Digite seu nome" required>
+        </div>
+        <div class="form-group">
+          <label for="problem">Descrição do Problema</label>
+          <textarea id="problem" name="problem" placeholder="Descreva o problema" rows="4" required></textarea>
+        </div>
+        <button type="submit" id="submit-btn">Enviar Chamado</button>
+      </form>
+      <p id="form-message"></p>
+    </section>
+
+    <!-- Área de listagem de chamados (será expandida nos próximos encontros) -->
+    <section id="tickets-section">
+      <h2>Chamados</h2>
+      <div id="tickets-list">
+        <p class="empty-message">Nenhum chamado registrado ainda.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- NOTA: No 3º Encontro, será adicionado o script do Socket.IO aqui -->
+  <script src="app.js"></script>
+</body>
+</html>

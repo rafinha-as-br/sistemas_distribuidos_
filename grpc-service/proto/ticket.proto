@@ -1,0 +1,12 @@
+// ============================================
+// ticket.proto
+// Definição protobuf para comunicação gRPC entre serviços.
+//
+// Será implementado no 4º Encontro.
+// Responsabilidades futuras:
+//   - Definir mensagem TicketRequest.
+//   - Definir mensagem ClassificationResponse.
+//   - Definir serviço ClassificationService com RPC Classify.
+// ============================================
+
+// TODO: Implementar definição protobuf no 4º Encontro.
